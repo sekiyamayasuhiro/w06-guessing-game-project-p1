@@ -26,10 +26,10 @@ const checkGuess = num => {
     }
 };
 
-function askGuess(guess) {
+function askGuess() {
     rl.question("Enter a guess: ", guess => {
         let numGuess = Number(guess);
-        // checkGuess(numGuess);
+        console.log(numGuess);
         if (checkGuess(numGuess)) {
             console.log("You win!");
             rl.close();
