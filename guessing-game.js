@@ -8,8 +8,8 @@ const rl = readline.createInterface({
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-const secretNumber = randomInRange(0, 100);
+let secretNumber
+// const secretNumber = randomInRange(0, 100);
 
 // Define a function named checkGuess that accepts a number as an argument. It should compare that argument against the global secretNumber. It should have the following behavior:
 const checkGuess = num => {
@@ -33,7 +33,7 @@ const checkGuess = num => {
 function askGuess() {
     rl.question("Enter a guess: ", guess => {
         let numGuess = Number(guess);
-        console.log(numGuess);
+        // console.log(numGuess);
         if (checkGuess(numGuess)) {
             console.log("You win!");
             rl.close();
@@ -44,4 +44,20 @@ function askGuess() {
     })
 }
 
-askGuess()
+function askRange() {
+    rl.question("Enter a min number: ", min => {
+        rl.question("Enter a max number: ", max => {
+            console.log(`I'm thinking of a number between ${min} and ${max}...`)
+            min = Number(min);
+            max = Number(max);
+            secretNumber = randomInRange(min, max);
+            // let secretNumber = randomInRange(min, max);
+            // console.log(secretNumber);
+            askGuess();
+            // rl.close();
+        })
+    })
+}
+
+
+askRange();
