@@ -5,7 +5,11 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const secretNumber = 3;
+function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const secretNumber = randomInRange(0, 100);
 
 // Define a function named checkGuess that accepts a number as an argument. It should compare that argument against the global secretNumber. It should have the following behavior:
 const checkGuess = num => {
@@ -38,14 +42,6 @@ function askGuess() {
             return askGuess();
         };
     })
-
 }
-// Define a function named askGuess. The method should use the readline module's
-// question method to ask the user to 'Enter a guess: '. If you need a refresher
-// on how to use this method, check out the question docs. Once the user enters
-// their number, the checkGuess function should be called with their number as an
-// argument and the interface should be closed. When the user enters their guess
-// it will be interpreted as a string of numeric characters and not an actual number type!
 
-// console.log(checkGuess());
 askGuess()
