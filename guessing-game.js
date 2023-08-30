@@ -5,10 +5,14 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+//Global Variables
+let secretNumber;
+let numAttempts = 5;
+
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-let secretNumber
+
 // const secretNumber = randomInRange(0, 100);
 
 // Define a function named checkGuess that accepts a number as an argument. It should compare that argument against the global secretNumber. It should have the following behavior:
@@ -34,11 +38,16 @@ function askGuess() {
     rl.question("Enter a guess: ", guess => {
         let numGuess = Number(guess);
         // console.log(numGuess);
-        if (checkGuess(numGuess)) {
+        if (numAttempts === 1) {
+            console.log("You Lose!")
+            rl.close()
+        }
+        else if (checkGuess(numGuess)) {
             console.log("You win!");
             rl.close();
         }
-        else {
+        else if (numAttempts > 1) {
+            numAttempts--
             return askGuess();
         };
     })
